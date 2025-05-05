@@ -15,9 +15,10 @@ def main():
     
     # Import after path setup
     from langflow.main import create_app, setup_static_files
+    from fastapi.staticfiles import StaticFiles
     
     # Get port from environment with fallback
-    port = int(os.environ.get("PORT", os.environ.get("LANGFLOW_PORT", 8080)))
+    port = int(os.environ.get("PORT", os.environ.get("LANGFLOW_PORT", 10000)))
     host = os.environ.get("LANGFLOW_HOST", "0.0.0.0")
     
     print(f"Starting Langflow on {host}:{port}")
@@ -29,15 +30,16 @@ def main():
     print(f"Frontend path: {frontend_path}")
     print(f"Frontend exists: {frontend_exists}")
     
-    # Create the application with static files support
+    # Create the application
     app = create_app()
     
     # Setup static files explicitly
     if frontend_exists:
         print(f"Setting up static files from: {frontend_path}")
         try:
+            # Use FastAPI's StaticFiles instead of uvicorn's
             static_files_dir = Path(frontend_path)
-            app.mount("/", uvicorn.middleware.StaticFiles(directory=str(static_files_dir), html=True), name="static")
+            app.mount("/", StaticFiles(directory=str(static_files_dir), html=True), name="static")
         except Exception as e:
             print(f"Error mounting static files: {e}")
     

@@ -7,6 +7,9 @@ python-multipart>=0.0.6
 toml>=0.10.0
 distro>=1.7.0  # Required by OpenAI
 jiter>=0.4.0   # Required by OpenAI for streaming
+astrapy>=0.7.0  # Required for Astra integration
+markdown>=3.4.0  # Required for markdown processing
+apify-client>=1.0.0  # Required for Apify integration
 
 # LangChain core
 langchain>=0.1.0
