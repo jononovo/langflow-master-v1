@@ -14,7 +14,12 @@ DEPENDENCIES = [
     "langchain-openai",
     "pydantic",
     "httpx",
-    "python-multipart"
+    "python-multipart",
+    "langchain-google-community",
+    "astrapy",
+    "toml",
+    "gitpython",
+    "langflow"
 ]
 
 def install_dependencies():
