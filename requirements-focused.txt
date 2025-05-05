@@ -1,53 +1,53 @@
 # Core dependencies
-fastapi==0.109.2
-uvicorn==0.27.0
-pydantic==2.5.2
-httpx==0.26.0
-python-multipart==0.0.9
-toml==0.10.2
+fastapi>=0.100.0
+uvicorn>=0.20.0
+pydantic>=2.0.0
+httpx>=0.24.0
+python-multipart>=0.0.6
+toml>=0.10.0
 
 # LangChain core
-langchain==0.1.9
-langchain-core==0.1.27
+langchain>=0.1.0
+langchain-core>=0.1.0
 
 # AI API integrations
-langchain-openai==0.0.5
-openai==1.20.0
-langchain-anthropic==0.1.1
-langchain-cohere==0.1.2
-langchain-google-genai==0.0.9
+langchain-openai>=0.0.3
+openai>=1.10.0
+langchain-anthropic>=0.1.0
+langchain-cohere>=0.1.0
+langchain-google-genai>=0.0.8
 
 # Google services
-langchain-google-community==0.0.8
-google-api-python-client==2.123.0
-google-auth==2.28.1
+langchain-google-community>=0.0.6
+google-api-python-client>=2.100.0
+google-auth>=2.22.0
 
 # CrewAI 
-crewai==0.28.7
-crewai_tools==0.1.10
+crewai>=0.20.0
+crewai_tools>=0.1.0
 
 # Composio (if available)
-# composio==0.1.0  # Commented out as it seems to be unavailable
+# composio>=0.1.0  # Commented out as it seems to be unavailable
 
 # RAG tools
-langchain-community==0.0.29
-sentence-transformers==2.5.1
-faiss-cpu==1.7.4
-pypdf==4.0.2
-unstructured==0.12.4
-tiktoken==0.5.2
+langchain-community>=0.0.25
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.0
+pypdf>=3.0.0
+unstructured>=0.10.0
+tiktoken>=0.5.0
 
 # ChromaDB
-chromadb==0.4.22
-langchain-chroma==0.0.1
+chromadb>=0.4.0
+langchain-chroma>=0.0.1
 
 # Firecrawl (assuming this is for web crawling)
-beautifulsoup4==4.12.2
-selenium==4.18.1
-playwright==1.41.2
-requests==2.31.0
+beautifulsoup4>=4.10.0
+selenium>=4.10.0
+playwright>=1.30.0
+requests>=2.28.0
 
 # Common utilities
-gitpython==3.1.43
-tqdm==4.66.1
-pillow==10.2.0
+gitpython>=3.1.30
+tqdm>=4.64.0
+pillow>=10.0.0
