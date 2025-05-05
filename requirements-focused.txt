@@ -5,6 +5,7 @@ pydantic>=2.0.0
 httpx>=0.24.0
 python-multipart>=0.0.6
 toml>=0.10.0
+distro>=1.7.0  # Required by OpenAI
 
 # LangChain core
 langchain>=0.1.0
