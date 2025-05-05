@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python310", "nodejs-18_x", "gcc"]
+
+[phases.install]
+cmds = [
+  "cd src/backend && pip install -e .",
+  "cd ../../src/frontend && npm install"
+]
+
+[phases.build]
+cmds = ["cd src/frontend && npm run build"]
