@@ -18,8 +18,22 @@ RUN apt-get update && apt-get install -y \
 # Copy the entire repository
 COPY . .
 
-# Install backend dependencies with verbose output
-RUN cd src/backend && pip install --verbose -e . || { echo "Backend installation failed"; exit 1; }
+# Install backend dependencies
+RUN echo "Installing backend requirements" && \
+    if [ -f "src/backend/requirements.txt" ]; then \
+        pip install -r src/backend/requirements.txt; \
+    elif [ -f "src/backend/base/requirements.txt" ]; then \
+        pip install -r src/backend/base/requirements.txt; \
+    elif [ -f "requirements.txt" ]; then \
+        pip install -r requirements.txt; \
+    else \
+        echo "No requirements.txt found in expected locations"; \
+        find . -name "requirements.txt" -type f; \
+        exit 1; \
+    fi
+
+# Add backend to Python path
+ENV PYTHONPATH=/app/src/backend:${PYTHONPATH}
 
 # Install frontend dependencies and build
 RUN cd src/frontend && npm install && npm run build
