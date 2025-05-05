@@ -1,0 +1,54 @@
+# Core dependencies
+fastapi==0.109.2
+uvicorn==0.27.0
+pydantic==2.5.2
+httpx==0.26.0
+python-multipart==0.0.9
+toml==0.10.2
+
+# LangChain core
+langchain==0.1.9
+langchain-core==0.1.27
+
+# AI API integrations
+langchain-openai==0.0.5
+openai==1.20.0
+langchain-anthropic==0.1.1
+langchain-cohere==0.1.2
+langchain-google-genai==0.0.9
+langchain-mistralai==0.0.7
+
+# Google services
+langchain-google-community==0.0.8
+google-api-python-client==2.123.0
+google-auth==2.28.1
+
+# CrewAI 
+crewai==0.28.7
+crewai_tools==0.1.10
+
+# Composio (if available)
+composio==0.1.0
+
+# RAG tools
+langchain-community==0.0.29
+sentence-transformers==2.5.1
+faiss-cpu==1.7.4
+pypdf==4.0.2
+unstructured==0.12.4
+tiktoken==0.5.2
+
+# ChromaDB
+chromadb==0.4.22
+langchain-chroma==0.0.1
+
+# Firecrawl (assuming this is for web crawling)
+beautifulsoup4==4.12.2
+selenium==4.18.1
+playwright==1.41.2
+requests==2.31.0
+
+# Common utilities
+gitpython==3.1.43
+tqdm==4.66.1
+pillow==10.2.0

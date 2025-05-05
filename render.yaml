@@ -2,16 +2,19 @@ services:
   # A Docker web service
   - type: web
     name: langflow
+    env: python
     runtime: docker
     dockerfilePath: ./Dockerfile
-    repo: https://github.com/jononovo/langflow-master-v1
+    repo: https://github.com/jononovo/langflow-master-v1.git
     branch: windsurf_250505
     plan: standard
-    healthCheckPath: /
+    buildCommand: cd src/backend/base && pip install -e . && python /opt/render/project/src/render_setup.py && cd ../../../src/frontend && npm ci && npm run build && cd ../..
+    startCommand: python /opt/render/project/src/render_start.py
+    healthCheckPath: /api/v1/health
     autoDeploy: false
     envVars:
-      - key: LANGFLOW_DATABASE_URL
-        value: sqlite:////app/data/.cache/langflow/langflow.db
+      - key: PYTHON_VERSION
+        value: 3.11.0
       - key: LANGFLOW_HOST
         value: 0.0.0.0
       - key: LANGFLOW_PORT
