@@ -1,0 +1,10 @@
+run = "python replit_start.py"
+modules = ["python-3.11:v20-20230824-f46249a"]
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = "python replit_start.py"
+deploymentTarget = "cloudrun"
+ignorePorts = false
