@@ -7,26 +7,90 @@ import sys
 import subprocess
 import time
 
-def install_dependencies():
-    """Install the focused dependencies"""
-    print("Installing Langflow and dependencies...")
+def install_core_dependencies():
+    """Install core dependencies one by one to avoid package manager issues"""
+    print("Installing core dependencies...")
+    
+    core_packages = [
+        "fastapi>=0.100.0", "uvicorn>=0.20.0", "pydantic>=2.0.0",
+        "httpx>=0.24.0", "python-multipart>=0.0.6", "toml>=0.10.0",
+        "distro>=1.7.0", "jiter>=0.4.0", "astrapy>=0.7.0",
+        "markdown>=3.4.0", "apify-client>=1.0.0"
+    ]
+    
+    for package in core_packages:
+        try:
+            print(f"Installing {package}")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except subprocess.CalledProcessError as e:
+            print(f"Warning: Failed to install {package}: {e}")
+            # Continue anyway - non-critical failures shouldn't stop everything
+
+def install_langchain_dependencies():
+    """Install LangChain dependencies"""
+    print("Installing LangChain dependencies...")
+    
+    langchain_packages = [
+        "langchain>=0.1.0", "langchain-core>=0.1.0", "langchain-openai>=0.0.3",
+        "openai>=1.10.0", "langchain-anthropic>=0.1.0", "langchain-cohere>=0.1.0",
+        "langchain-google-genai>=0.0.8", "langchain-google-community>=0.0.6",
+        "langchain-community>=0.0.25", "langchain-chroma>=0.0.1"
+    ]
+    
+    for package in langchain_packages:
+        try:
+            print(f"Installing {package}")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except subprocess.CalledProcessError as e:
+            print(f"Warning: Failed to install {package}: {e}")
+
+def install_additional_dependencies():
+    """Install additional tool dependencies"""
+    print("Installing additional dependencies...")
+    
+    additional_packages = [
+        "crewai>=0.20.0", "crewai_tools>=0.1.0", "tavily-python>=0.2.8",
+        "sentence-transformers>=2.2.0", "faiss-cpu>=1.7.0", "pypdf>=3.0.0",
+        "unstructured>=0.10.0", "tiktoken>=0.5.0", "chromadb>=0.4.0",
+        "beautifulsoup4>=4.10.0", "selenium>=4.10.0", "requests>=2.28.0",
+        "gitpython>=3.1.30", "tqdm>=4.64.0", "pillow>=10.0.0"
+    ]
+    
+    for package in additional_packages:
+        try:
+            print(f"Installing {package}")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except subprocess.CalledProcessError as e:
+            print(f"Warning: Failed to install {package}: {e}")
+            
+def install_langflow():
+    """Install langflow from local directory"""
+    print("Installing Langflow package...")
     
     # Install langflow package from the backend/base directory
     backend_base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "src", "backend", "base")
     print(f"Installing langflow from {backend_base_path}")
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install", "-e", backend_base_path
-    ])
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", backend_base_path])
+        print("Successfully installed Langflow package")
+    except subprocess.CalledProcessError as e:
+        print(f"Error installing Langflow package: {e}")
+        return False
     
-    # Install dependencies from the focused requirements file
-    requirements_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "requirements-focused.txt")
-    print(f"Installing dependencies from {requirements_path}")
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install", "-r", requirements_path
-    ])
-    
-    print("Successfully installed Langflow and dependencies")
     return True
+
+def install_dependencies():
+    """Install all dependencies"""
+    start_time = time.time()
+    
+    install_core_dependencies()
+    install_langchain_dependencies()
+    install_additional_dependencies()
+    success = install_langflow()
+    
+    end_time = time.time()
+    print(f"Total installation time: {end_time - start_time:.2f} seconds")
+    return success
 
 def run_langflow():
     """Start the Langflow application"""
